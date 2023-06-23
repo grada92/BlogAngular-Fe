@@ -1,0 +1,57 @@
+<div class="container d-flex w-50 h-100 justify-content-center align-items-center pb-5 text-center">
+  <div>
+    <form [formGroup]="formRegistrazione" class="container-sm pb-5">
+      <mat-card class="p-4 login-form" >
+        <p class="text-center mb-4 box-text">Registrati</p>
+        <div class="row row-cols-2 my-2">
+          <div class="col">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Nome</mat-label>
+              <input matInput placeholder="Mario" formControlName="nome" required>
+              <mat-error *ngIf="formRegistrazione.controls['nome'].invalid">{{getNomeErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Cognome</mat-label>
+              <input matInput placeholder="Rossi" formControlName="cognome" required>
+              <mat-error *ngIf="formRegistrazione.controls['cognome'].invalid">{{getCognomeErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row row-cols-2 my-2">
+          <div class="col">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="mario.rossi@example.com" formControlName="email" required>
+              <mat-error *ngIf="formRegistrazione.controls['email'].invalid">{{getEmailErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required>
+              <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="formRegistrazione.controls['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+          <div>
+            <button class="btn btn-success" [class.opacity-50]="formRegistrazione.invalid" [disabled]="formRegistrazione.invalid" (click)="registra()">Registrati</button>
+          </div>
+        </div>
+      </mat-card>
+    </form>
+  </div>
+
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2 pt-5">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Crea Nuovo Articolo</h2>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+            <div formArrayName="tags" class="d-flex">
+              <p>Inserire Tag: </p>
+              <div *ngFor="let control of tagFormArray?.controls; let i = index">
+                <label>
+                  <input type="checkbox" [formControlName]="i">
+                  {{ tags[i].name }}
+                </label>
+              </div>
+            </div>
+
+            <div formArrayName="categories" class="d-flex">
+              <p>Inserire Categorie: </p>
+              <div *ngFor="let control of categoryFormArray?.controls; let i = index">
+                <label>
+                  <input type="checkbox" [formControlName]="i">
+                 {{ categories[i].name }}
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="title">Titolo</label>
+              <input type="text" id="title" formControlName="title" class="form-control" />
+              <div *ngIf="articleForm.get('title')?.errors && articleForm.get('title')?.touched" class="invalid-feedback">
+                Il titolo è obbligatorio
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="content">Contenuto</label>
+              <quill-editor id="content" formControlName="content" class="form-control"></quill-editor>
+              <div *ngIf="articleForm.get('content')?.errors && articleForm.get('content')?.touched" class="invalid-feedback">
+                Il contenuto è obbligatorio
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" [disabled]="!articleForm.valid" class="btn btn-primary">Salva</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

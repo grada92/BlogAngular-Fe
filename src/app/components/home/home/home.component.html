@@ -1,0 +1,6 @@
+<div class="articles-container">
+  <div class="article-item" *ngFor="let article of articles">
+    <h2 class="article-title">{{ article.title }}</h2>
+    <div class="article-content" [innerHTML]="article.content"></div>
+  </div>
+</div>

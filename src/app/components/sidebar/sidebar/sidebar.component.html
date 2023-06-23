@@ -1,0 +1,25 @@
+<div class="main-container">
+  <mat-toolbar color="primary" class="d-flex justify-content-between align-items-center bar-black">
+    <div style="width: calc(100% / 3 - 2rem)">
+      <h1>Wordpress</h1>
+    </div>
+    <div style="width: calc(100% / 3 - 2rem);text-align: right;" >
+      <div *ngIf="showLogout()">
+        <button mat-stroked-button routerLink="/home">Accedi</button>
+        <button  mat-stroked-button routerLink="/registrazione-utente">Registrazione</button>
+      </div>
+      <div *ngIf="!showLogout()">
+        <button class="ms-btn-tertiary m-2" mat-raised-button (click)="logout()">Logout</button>
+      </div>
+    </div>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav-content>
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+</div>
+
