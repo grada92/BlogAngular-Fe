@@ -1,1 +1,40 @@
-<p>login works!</p>
+<div class="d-flex justify-content-center align-items-center pt-5">
+
+  <form [formGroup]="formLogin" class="container-sm pt-5 w-25">
+    <mat-card class="p-5 login-form">
+      <p class="text-center mb-4 box-text pt-2">Effettua il login</p>
+      <div class="row row-cols-1 my-2">
+        <div class="col">
+          <p class="error-message">{{ loginError }}</p>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="mario.rossi@example.com" formControlName="email" required>
+            <mat-error *ngIf="formLogin.controls['email'].invalid">{{getEmailErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row row-cols-1 my-2">
+        <div class="col">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required>
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="formLogin.controls['password'].invalid && showError" class="error-message">
+              {{getPasswordErrorMessage()}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="col">
+          <button mat-raised-button class="bg-success text-dark" [class.opacity-50]="formLogin.invalid"  [disabled]="formLogin.invalid" (click)="login()">Accedi</button>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+</div>
+
+
+

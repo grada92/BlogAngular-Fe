@@ -1,16 +1,12 @@
-
-.login-form {
+.box-form {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.9);
+  opacity: 0.95;
 }
-
 .box-text {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
   padding-bottom: 15px;
-}
-
-.error-message {
-  color: red;
+  padding-top: 10px;
 }

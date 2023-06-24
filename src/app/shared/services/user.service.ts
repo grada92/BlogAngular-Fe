@@ -7,6 +7,7 @@ import { UserOutputDto } from 'src/app/models/user/user-output-dto.model';
 import { AuthenticationDto } from 'src/app/models/user/authentication-dto-model';
 import { LoginUserDto } from 'src/app/models/user/login-user-dto.model';
 import { RoleOutputDto } from 'src/app/models/user/role-output-dto-model';
+import { AuthorRegistrationDto } from 'src/app/models/user/author-registration-dto.model';
 
 
 @Injectable({
@@ -35,15 +36,21 @@ export class UserService {
   findRolesByUserId(id:number): Observable<RoleOutputDto[]> {
     return this.httpClient.get<RoleOutputDto[]>(environment.endpoint + "blog/user/roles/" + id);
   }
-/*
 
+  registraAuthor(AuthorRegister : AuthorRegistrationDto) : Observable<UserOutputDto> {
+    return this.httpClient.post<UserOutputDto>(environment.endpoint + "blog/user/authorRegistration", AuthorRegister)
+  }
 
   findAll():Observable<UserOutputDto[]>{
-    return this.httpClient.get<UserOutputDto[]>(environment.endpoint + "auth/user");
+    return this.httpClient.get<UserOutputDto[]>(environment.endpoint + "blog/user");
+  }
+
+  findAllAuthor():Observable<UserOutputDto[]>{
+    return this.httpClient.get<UserOutputDto[]>(environment.endpoint + "blog/user/authors");
   }
 
   delete(id : number): Observable<void>{
-    return this.httpClient.delete<void>(environment.endpoint + "auth/user/deleteUser/" + id);
+    return this.httpClient.delete<void>(environment.endpoint + "blog/user/deleteAuthor/" + id);
   }
-  */
+
 }

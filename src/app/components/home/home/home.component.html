@@ -1,6 +1,14 @@
-<div class="articles-container">
-  <div class="article-item" *ngFor="let article of articles">
-    <h2 class="article-title">{{ article.title }}</h2>
-    <div class="article-content" [innerHTML]="article.content"></div>
+<div class="container">
+  <div class="card-deck">
+    <div class="card mb-4" *ngFor="let article of articles">
+      <div class="card-body">
+        <h5 class="card-title">{{ article.title }}</h5>
+        <p class="card-text" [innerHTML]="article.content | slice:0:previewLength"></p>
+        <div class="tag-container">
+          <p class="card-tag" *ngFor="let tag of article.tags">{{ tag.name }}</p>
+        </div>
+        <button class="btn btn-primary" (click)="viewFullArticle(article.id)">Leggi di più</button>
+      </div>
+    </div>
   </div>
 </div>

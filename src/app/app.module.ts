@@ -16,9 +16,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { LoginComponent } from './components/login/login/login.component';
+import { AuthorComponent } from './components/author/author/author.component';
+import { GestioneAutoriComponent } from './components/gestione-autori/gestione-autori/gestione-autori.component';
+import { ArticleviewComponent } from './components/articleview/articleview/articleview.component';
 const routes: Routes = [
   {
     path: 'home',
@@ -27,6 +32,26 @@ const routes: Routes = [
   {
     path: 'registrazione-utente',
     component: RegistrazioneComponent,
+  },
+  {
+    path: 'articolo',
+    component: ArticleEditorComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'registrazione-autore',
+    component: AuthorComponent,
+  },
+  {
+    path: 'gestione-autori',
+    component: GestioneAutoriComponent,
+  },
+  {
+    path: 'articolo/:id',
+    component: ArticleviewComponent,
   },
   {
     path: '',
@@ -47,7 +72,9 @@ const routes: Routes = [
     HomeComponent,
     SidebarComponent,
     RegistrazioneComponent,
-    LoginComponent
+    LoginComponent,
+    AuthorComponent,
+    GestioneAutoriComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +89,8 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
     BrowserAnimationsModule,
     MatSidenavModule,
     QuillModule.forRoot(),

@@ -8,18 +8,26 @@ import { environment } from "src/environment/environment";
 @Injectable({providedIn: 'root'})
 export class ArticleService {
 
-    constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
 
-    create(articleInputDto: ArticleInputDto): Observable<ArticleOutputDto> {
-      return this.httpClient.post<ArticleOutputDto>(environment.endpoint + "blog/article", articleInputDto);
+  create(articleInputDto: ArticleInputDto): Observable<ArticleOutputDto> {
+    return this.httpClient.post<ArticleOutputDto>(environment.endpoint + "blog/article", articleInputDto);
   }
 
-    readAll() : Observable<ArticleOutputDto[]>{
-        return this.httpClient.get<ArticleOutputDto[]>(environment.endpoint + "blog/article/all",{
-            headers : {
-                skip : "true"
-            }
-        });
-    }
+  readAll() : Observable<ArticleOutputDto[]>{
+      return this.httpClient.get<ArticleOutputDto[]>(environment.endpoint + "blog/article/all",{
+          headers : {
+              skip : "true"
+          }
+      });
+  }
+
+  findById(id: number): Observable<ArticleOutputDto> {
+    return this.httpClient.get<ArticleOutputDto>(environment.endpoint + "blog/article/" + `${id}`, {
+      headers: {
+        skip: "true"
+      }
+    });
+  }
 
 }

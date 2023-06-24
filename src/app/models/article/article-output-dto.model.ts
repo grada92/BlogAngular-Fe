@@ -8,5 +8,5 @@ export interface ArticleOutputDto {
   content: string;
   image?: ArrayBuffer;
   categories: CategoryOutputDto;
-  tags: TagOutputDto;
+  tags: TagOutputDto[];
 }

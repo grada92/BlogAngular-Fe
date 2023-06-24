@@ -1,0 +1,46 @@
+<div class="d-flex w-100 h-100 justify-content-center align-items-center" style="background-image: url('https://www.chiesaviaggi.it/media/2950/civida-di-bagnoregio-web.jpg'); background-size: cover;background-position: center top -200px;">
+  <div class="w-25 pb-5">
+    <form [formGroup]="formStaff" class="container-sm pb-5">
+      <mat-card class="p-4 box-form">
+        <p class="text-center mb-4 box-text">Registra Autore</p>
+        <div class="row my-2">
+          <div class="col">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Nome</mat-label>
+              <input matInput placeholder="Mario" formControlName="nome" required>
+              <mat-error *ngIf="formStaff.controls['nome'].invalid">{{getNomeErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row my-2">
+          <div class="col">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Cognome</mat-label>
+              <input matInput placeholder="Rossi" formControlName="cognome" required>
+              <mat-error *ngIf="formStaff.controls['cognome'].invalid">{{getCognomeErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+
+
+        </div>
+        <div class="row my-2">
+          <div class="col">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="mario.rossi@example.com" formControlName="email" required>
+              <mat-error *ngIf="formStaff.controls['email'].invalid">{{getEmailErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row my-2 text-center">
+          <div class="col">
+            <button mat-raised-button class="bg-success text-dark" (click)="staffRegister()" [disabled]="loading">
+              <mat-icon *ngIf="loading">autorenew</mat-icon>
+              <span *ngIf="!loading">Registra</span>
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </form>
+  </div>
+</div>

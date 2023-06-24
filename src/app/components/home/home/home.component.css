@@ -1,4 +1,19 @@
-.articles-container {
-  display: flex;
-  flex-wrap: wrap;
+.article-container {
+  max-width: 800px; /* Imposta la larghezza massima del contenitore degli articoli */
+  margin: 0 auto; /* Centra il contenitore */
+}
+
+.tag-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.card-tag {
+  display: inline-block;
+  background-color: #f5b45f;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #ffffff;
 }

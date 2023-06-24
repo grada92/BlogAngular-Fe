@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ArticleOutputDto } from 'src/app/models/article/article-output-dto.model';
 import { ArticleService } from 'src/app/shared/services/article.service';
 
@@ -8,8 +9,9 @@ import { ArticleService } from 'src/app/shared/services/article.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  previewLength: number = 150; // Lunghezza dell'anteprima degli articoli
   articles: ArticleOutputDto[] = [];
-  constructor(private articleService:ArticleService) {}
+  constructor(private articleService:ArticleService, private router:Router) {}
 
   ngOnInit() {
     this.readAllArticles();
@@ -26,4 +28,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  viewFullArticle(articleId: number) {
+    this.router.navigateByUrl('/articolo/' + articleId);
+  }
 }
