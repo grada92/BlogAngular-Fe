@@ -1,4 +1,6 @@
 <div class="container pt-5">
   <p class="font-title pb-5">{{ article?.title }}</p>
   <p [innerHTML]="article?.content"></p>
+  <button (click)="approveArticle(article!.id)">Approva</button>
 </div>
+

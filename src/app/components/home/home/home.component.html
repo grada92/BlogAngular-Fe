@@ -1,13 +1,39 @@
-<div class="container">
-  <div class="card-deck">
-    <div class="card mb-4" *ngFor="let article of articles">
-      <div class="card-body">
-        <h5 class="card-title">{{ article.title }}</h5>
-        <p class="card-text" [innerHTML]="article.content | slice:0:previewLength"></p>
-        <div class="tag-container">
-          <p class="card-tag" *ngFor="let tag of article.tags">{{ tag.name }}</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar">
+        <h5 class="text-center">NAVIGAZIONE</h5>
+        <ul class="sidebar-menu">
+          <li>
+            <button class="btn btn-primary">Politica</button>
+          </li>
+          <li>
+            <button class="btn btn-primary">Spettacolo</button>
+          </li>
+          <li>
+            <button class="btn btn-primary">Turismo</button>
+          </li>
+          <li>
+            <button class="btn btn-primary">Sport</button>
+          </li>
+          <li>
+            <button class="btn btn-primary">Intrattenimento</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="card-deck">
+        <div class="card mb-4" *ngFor="let article of articles">
+          <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <p class="card-text" [innerHTML]="article.content | slice:0:previewLength"></p>
+            <div class="tag-container">
+              <p class="card-tag" *ngFor="let tag of article.tags">{{ tag.name }}</p>
+            </div>
+            <button class="btn btn-primary" (click)="viewFullArticle(article.id)">Leggi di più</button>
+          </div>
         </div>
-        <button class="btn btn-primary" (click)="viewFullArticle(article.id)">Leggi di più</button>
       </div>
     </div>
   </div>

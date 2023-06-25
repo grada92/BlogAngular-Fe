@@ -24,6 +24,8 @@ import { LoginComponent } from './components/login/login/login.component';
 import { AuthorComponent } from './components/author/author/author.component';
 import { GestioneAutoriComponent } from './components/gestione-autori/gestione-autori/gestione-autori.component';
 import { ArticleviewComponent } from './components/articleview/articleview/articleview.component';
+import { ReviewComponent } from './components/review/review/review.component';
+import { ViewreviewComponent } from './components/viewreview/viewreview/viewreview.component';
 const routes: Routes = [
   {
     path: 'home',
@@ -50,8 +52,16 @@ const routes: Routes = [
     component: GestioneAutoriComponent,
   },
   {
+    path: 'revisione',
+    component: ReviewComponent,
+  },
+  {
     path: 'articolo/:id',
     component: ArticleviewComponent,
+  },
+  {
+    path: 'revisione/:id',
+    component: ViewreviewComponent,
   },
   {
     path: '',
@@ -74,7 +84,8 @@ const routes: Routes = [
     RegistrazioneComponent,
     LoginComponent,
     AuthorComponent,
-    GestioneAutoriComponent
+    GestioneAutoriComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,30 @@ export class ArticleService {
       });
   }
 
+  readAllApproved() : Observable<ArticleOutputDto[]>{
+    return this.httpClient.get<ArticleOutputDto[]>(environment.endpoint + "blog/article/approved",{
+        headers : {
+            skip : "true"
+        }
+    });
+  }
+
+  readAllUnapproved() : Observable<ArticleOutputDto[]>{
+  return this.httpClient.get<ArticleOutputDto[]>(environment.endpoint + "blog/article/unapproved",{
+      headers : {
+          skip : "true"
+      }
+    });
+  }
+
+  articleApproved(id: number): Observable<ArticleOutputDto> {
+    return this.httpClient.put<ArticleOutputDto>(environment.endpoint + "blog/article/approved/" + `${id}`, null, {
+      headers: {
+        skip: "true"
+      }
+    });
+  }
+
   findById(id: number): Observable<ArticleOutputDto> {
     return this.httpClient.get<ArticleOutputDto>(environment.endpoint + "blog/article/" + `${id}`, {
       headers: {
