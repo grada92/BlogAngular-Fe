@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@ang
 import { ArticleInputDto } from 'src/app/models/article/article-input-dto.model';
 import { ArticleOutputDto } from 'src/app/models/article/article-output-dto.model';
 import { CategoryOutputDto } from 'src/app/models/category/category-output-dto.model';
+import { TagInputDto } from 'src/app/models/tag/tag-input-dto.model';
 import { TagOutputDto } from 'src/app/models/tag/tag-output-dto.model';
 import { ArticleService } from 'src/app/shared/services/article.service';
 import { CategoryService } from 'src/app/shared/services/category.service';
@@ -21,6 +22,8 @@ export class ArticleEditorComponent implements OnInit{
   tags: TagOutputDto[] = [];
   categories: CategoryOutputDto[] = [];
   userId:number = 1;
+  newTag: string = '';
+  exist:boolean = false;
 
   constructor(private formBuilder: FormBuilder, private tagService: TagService, private categoryService: CategoryService, private articleService: ArticleService) {
     this.articleForm = this.formBuilder.group({
@@ -65,6 +68,33 @@ export class ArticleEditorComponent implements OnInit{
       }
     });
   }
+
+  addTag() {
+    if (this.newTag) {
+      const existingTag = this.tags.find(tag => tag.name.toLowerCase() === this.newTag.toLowerCase());
+      if (existingTag) {
+        console.log('Il tag esiste già:', existingTag);
+        this.exist = true;
+        return; //
+      }
+
+      const newTag: TagInputDto = {
+        name: this.newTag
+      };
+
+      this.tagService.create(newTag).subscribe({
+        next: (val: TagOutputDto) => {
+          console.log('Tag creato:', val);
+          window.location.reload();
+        },
+        error: (error: any) => {
+          console.error('Errore Articolo non Valido', error);
+        }
+      });
+    }
+  }
+
+
 
   onSubmit() {
     if (this.articleForm?.valid) {

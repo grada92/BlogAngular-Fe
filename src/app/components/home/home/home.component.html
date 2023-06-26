@@ -3,33 +3,40 @@
     <div class="col-md-3">
       <div class="sidebar">
         <h5 class="text-center">NAVIGAZIONE</h5>
+        <div class="search-container py-5">
+          <input type="text" class="form-control" placeholder="Cerca articoli">
+          <button class="btn btn-primary">Cerca</button>
+        </div>
         <ul class="sidebar-menu">
           <li>
-            <button class="btn btn-primary">Politica</button>
+            <button class="btn btn-primary" (click)="filterArticlesByCategory('Politica')">Politica</button>
           </li>
           <li>
-            <button class="btn btn-primary">Spettacolo</button>
+            <button class="btn btn-primary" (click)="filterArticlesByCategory('Spettacolo')">Spettacolo</button>
           </li>
           <li>
-            <button class="btn btn-primary">Turismo</button>
+            <button class="btn btn-primary" (click)="filterArticlesByCategory('Turismo')">Turismo</button>
           </li>
           <li>
-            <button class="btn btn-primary">Sport</button>
+            <button class="btn btn-primary" (click)="filterArticlesByCategory('Sport')">Sport</button>
           </li>
           <li>
-            <button class="btn btn-primary">Intrattenimento</button>
+            <button class="btn btn-primary" (click)="filterArticlesByCategory('Intrattenimento')">Intrattenimento</button>
+          </li>
+          <li>
+            <button class="btn btn-primary" (click)="filterArticlesByCategory('')">Tutti Gli Articoli</button>
           </li>
         </ul>
       </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 pt-5">
       <div class="card-deck">
-        <div class="card mb-4" *ngFor="let article of articles">
+        <div class="card mb-4" *ngFor="let article of filteredArticles">
           <div class="card-body">
             <h5 class="card-title">{{ article.title }}</h5>
             <p class="card-text" [innerHTML]="article.content | slice:0:previewLength"></p>
             <div class="tag-container">
-              <p class="card-tag" *ngFor="let tag of article.tags">{{ tag.name }}</p>
+              <p class="card-tag" *ngFor="let category of article.categories">{{ category.name }}</p>
             </div>
             <button class="btn btn-primary" (click)="viewFullArticle(article.id)">Leggi di più</button>
           </div>

@@ -1,13 +1,21 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8 offset-md-2 pt-5">
+    <div class="col-md-8 offset-md-2 pt-5 pb-5">
+      <div *ngIf="exist">
+        <p class="text-warning">Il tag esiste già. Inserisci un nuovo tag.</p>
+      </div>
       <div class="card">
         <div class="card-header">
           <h2 class="card-title">Crea Nuovo Articolo</h2>
         </div>
         <div class="card-body">
+          <div class="py-4">
+            <label for="newTag">Inserisci un nuovo tag:</label>
+            <input type="text" id="newTag" [(ngModel)]="newTag" placeholder="Inserisci il nuovo tag">
+            <button type="button" (click)="addTag()">Aggiungi</button>
+          </div>
           <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
-            <div formArrayName="tags" class="d-flex">
+            <div formArrayName="tags" class="d-flex py-4">
               <p>Inserire Tag: </p>
               <div *ngFor="let control of tagFormArray?.controls; let i = index">
                 <label>
@@ -17,7 +25,7 @@
               </div>
             </div>
 
-            <div formArrayName="categories" class="d-flex">
+            <div formArrayName="categories" class="d-flex py-4">
               <p>Inserire Categorie: </p>
               <div *ngFor="let control of categoryFormArray?.controls; let i = index">
                 <label>
