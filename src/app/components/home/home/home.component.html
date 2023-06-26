@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3">
-      <div class="sidebar">
+      <div class="sidebar-left">
         <h5 class="text-center">NAVIGAZIONE</h5>
         <div class="search-container py-5">
-          <input type="text" class="form-control" placeholder="Cerca articoli">
-          <button class="btn btn-primary">Cerca</button>
+          <input type="text" class="form-control" placeholder="Cerca articoli" [(ngModel)]="searchArticleText">
+          <button class="btn btn-primary" (click)="searchArticles()">Cerca</button>
         </div>
         <ul class="sidebar-menu">
           <li>
@@ -29,7 +29,7 @@
         </ul>
       </div>
     </div>
-    <div class="col-md-9 pt-5">
+    <div class="col-md-6 pt-5">
       <div class="card-deck">
         <div class="card mb-4" *ngFor="let article of filteredArticles">
           <div class="card-body">
@@ -40,6 +40,16 @@
             </div>
             <button class="btn btn-primary" (click)="viewFullArticle(article.id)">Leggi di più</button>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="sidebar sidebar-right">
+        <h5 class="text-center">TAG</h5>
+        <div class="tag-container py-5">
+          <a class="tag-link" *ngFor="let tag of tags" (click)="filterArticlesByTag(tag.name)">
+            {{ tag.name }}
+          </a>
         </div>
       </div>
     </div>

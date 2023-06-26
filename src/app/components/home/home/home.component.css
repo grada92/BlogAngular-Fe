@@ -18,7 +18,7 @@
   color: #ffffff;
 }
 
-.sidebar {
+.sidebar-left {
   background-color: #f13131;
   width: 200px;
   height: 100vh;
@@ -48,4 +48,23 @@
 
 .sidebar-menu li button:hover {
   background-color: #ccc;
+}
+
+.sidebar-right {
+  background-color: #f13131;
+  width: 200px;
+  height: 100vh;
+  padding: 20px;
+  position: fixed;
+  right: 0;
+}
+
+.tag-link {
+  color:white;
+  text-decoration: none;
+  margin: 10px;
+}
+
+.tag-link:hover {
+  cursor: pointer;
 }
