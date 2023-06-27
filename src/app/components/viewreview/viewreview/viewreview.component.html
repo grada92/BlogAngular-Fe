@@ -2,9 +2,14 @@
   <div class="row justify-content-center">
     <div class="col-10">
       <div class="box-text">
-        <span class="font-title article-content">{{ article?.title }}</span>
-        <div class="article-content" [innerHTML]="article?.content"></div>
-        <button (click)="approveArticle(article!.id)">Approva</button>
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="font-title article-content" [innerHTML]="article?.title"></span>
+          <div class="d-flex">
+            <button class="btn btn-primary mx-2" (click)="approveArticle(article!.id)">Approva</button>
+            <a class="btn btn-danger mr-2" routerLink="/revisione">Revisiona altri Articoli</a>
+          </div>
+        </div>
+        <div class="article-content text-right" [innerHTML]="article?.content"></div>
       </div>
     </div>
   </div>

@@ -24,4 +24,5 @@ export class ArticleviewComponent implements OnInit {
       this.findbyId(this.articleId);
     });
   }
+
 }

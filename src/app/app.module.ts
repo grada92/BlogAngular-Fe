@@ -26,6 +26,7 @@ import { GestioneAutoriComponent } from './components/gestione-autori/gestione-a
 import { ArticleviewComponent } from './components/articleview/articleview/articleview.component';
 import { ReviewComponent } from './components/review/review/review.component';
 import { ViewreviewComponent } from './components/viewreview/viewreview/viewreview.component';
+
 const routes: Routes = [
   {
     path: 'home',
@@ -85,7 +86,8 @@ const routes: Routes = [
     LoginComponent,
     AuthorComponent,
     GestioneAutoriComponent,
-    ReviewComponent
+    ReviewComponent,
+    ViewreviewComponent
   ],
   imports: [
     BrowserModule,
@@ -106,6 +108,11 @@ const routes: Routes = [
     MatSidenavModule,
     QuillModule.forRoot(),
 
+
+
+  ],
+  exports: [
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-2 pt-5 pb-5">
+      <div class="alert alert-success" *ngIf="successMessage">
+        {{ successMessage }}
+      </div>
+
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
       <div *ngIf="exist">
         <p class="text-warning">Il tag esiste già. Inserisci un nuovo tag.</p>
       </div>
@@ -37,7 +44,7 @@
 
             <div class="form-group">
               <label for="title">Titolo</label>
-              <input type="text" id="title" formControlName="title" class="form-control" />
+              <quill-editor [modules]="quillTitle" id="title" formControlName="title" class="form-control"></quill-editor>
               <div *ngIf="articleForm.get('title')?.errors && articleForm.get('title')?.touched" class="invalid-feedback">
                 Il titolo è obbligatorio
               </div>

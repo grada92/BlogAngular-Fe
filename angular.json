@@ -30,7 +30,9 @@
               "./node_modules/quill/dist/quill.snow.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": ["./node_modules/quill/dist/quill.core.js"]
+            "scripts": ["./node_modules/quill/dist/quill.core.js",
+            "./node_modules/quill/dist/quill.min.js",
+            "./node_modules/quill-blot-formatter/dist/quill-blot-formatter.min.js"]
           },
           "configurations": {
             "production": {
