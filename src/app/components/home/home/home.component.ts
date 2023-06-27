@@ -11,7 +11,7 @@ import { TagService } from 'src/app/shared/services/tag.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  previewLength: number = 150;
+  previewLength: number = 100;
   articles: ArticleOutputDto[] = [];
   filteredArticles: any[] = [];
   selectedCat: string = '';

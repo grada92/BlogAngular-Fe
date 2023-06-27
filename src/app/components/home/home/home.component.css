@@ -18,6 +18,10 @@
   color: #ffffff;
 }
 
+.card-title {
+  max-width: 550px;
+}
+
 .sidebar-left {
   background-color: #f13131;
   width: 200px;

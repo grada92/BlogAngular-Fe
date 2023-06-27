@@ -1,6 +1,11 @@
 <div class="container pt-5">
-  <p class="font-title pb-5">{{ article?.title }}</p>
-  <p [innerHTML]="article?.content"></p>
-  <button (click)="approveArticle(article!.id)">Approva</button>
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class="box-text">
+        <span class="font-title article-content">{{ article?.title }}</span>
+        <div class="article-content" [innerHTML]="article?.content"></div>
+        <button (click)="approveArticle(article!.id)">Approva</button>
+      </div>
+    </div>
+  </div>
 </div>
-

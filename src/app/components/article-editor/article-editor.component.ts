@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
+import { QuillModules } from 'ngx-quill';
 import { ArticleInputDto } from 'src/app/models/article/article-input-dto.model';
 import { ArticleOutputDto } from 'src/app/models/article/article-output-dto.model';
 import { CategoryOutputDto } from 'src/app/models/category/category-output-dto.model';
@@ -32,6 +33,16 @@ export class ArticleEditorComponent implements OnInit{
       tags: this.formBuilder.array([]),
       categories: this.formBuilder.array([])
     })
+   }
+
+   quillEditor: QuillModules ={
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      ['link', 'image'],
+      [{'list': 'ordered'}, {'list': 'bullet'}],
+      [{'align': [] }],
+      ['clean']
+    ]
    }
 
   ngOnInit() {

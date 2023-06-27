@@ -1,15 +1,46 @@
 <div class="container pt-5">
-  <div class="card-deck">
-    <div class="card mb-4" *ngFor="let article of articles">
-      <div class="card-body">
-        <h5 class="card-title">{{ article.title }}</h5>
-        <p class="card-text" [innerHTML]="article.content | slice:0:previewLength"></p>
-        <div class="tag-container">
-          <p class="card-tag" *ngFor="let tag of article.tags">{{ tag.name }}</p>
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card-deck">
+        <div class="card mb-4" *ngFor="let article of articles">
+          <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <p class="card-text" [innerHTML]="article.content | slice:0:previewLength"></p>
+            <div class="tag-container">
+              <p class="card-tag" *ngFor="let tag of article.tags">{{ tag.name }}</p>
+            </div>
+            <button class="btn btn-danger" (click)="viewFullArticle(article.id)">Revisiona Articolo</button>
+          </div>
         </div>
-        <button class="btn btn-danger" (click)="viewFullArticle(article.id)">Revisiona Articolo</button>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="sidebar">
+        <h4>Validazione Articoli</h4>
+        <mat-card *ngIf="errorMessage" class="error-message">
+          <p>{{ errorMessage }}</p>
+        </mat-card>
+        <mat-card *ngIf="successMessage" class="success-message">
+          <p>{{ successMessage }}</p>
+        </mat-card>
+        <div>
+          <form [formGroup]="createValidation">
+            <mat-card>
+              <mat-form-field appearance="outline">
+                <mat-label>Titolo Lunghezza Max</mat-label>
+                <input matInput type="number" placeholder="Inserisci validazione per il titolo" formControlName="title" min="0">
+              </mat-form-field>
+            </mat-card>
+            <mat-card>
+              <mat-form-field appearance="outline">
+                <mat-label>Contenuto Lunghezza Max</mat-label>
+                <input matInput type="number" placeholder="Inserisci validazione per il contenuto" formControlName="content" min="0">
+              </mat-form-field>
+              <button mat-raised-button color="primary" (click)="save()">Crea Validazioni</button>
+            </mat-card>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
