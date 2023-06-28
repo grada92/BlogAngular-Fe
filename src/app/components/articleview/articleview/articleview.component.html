@@ -9,4 +9,47 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-12">
+      <form (submit)="createComment()">
+        <div class="form-group py-3">
+          <label for="commentContent">Commento</label>
+          <textarea class="form-control" id="commentContent" rows="1" required name="commentContent" [(ngModel)]="commentContent"></textarea>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Invia commento</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row pt-5">
+    <div class="col-12">
+        <div *ngFor="let comment of comments">
+          <div class="comment">
+            <div class="mx-4 username">{{comment.user.firstName}} {{comment.user.lastName}}</div>
+            <div class="box-comment">  {{comment.content}} </div>
+               <!-- Form per rispondere a un commento -->
+          <!-- Form per rispondere a un commento -->
+          <form (submit)="createAnotherComment(comment.id)">
+            <div class="form-group py-3">
+              <label for="replyContent">Rispondi al commento</label>
+              <textarea class="form-control" id="replyContent" rows="1" required name="replyContent" [(ngModel)]="replyContents[comment.id]"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Invia risposta</button>
+          </form>
+
+          <!-- Visualizza le risposte ai commenti -->
+          <div class="ml-4">
+            <div *ngFor="let reply of comment.replies" class="comment-reply">
+              <div class="mx-4 username">{{reply.user.firstName}} {{reply.user.lastName}}</div>
+              <div class="box-comment">{{reply.content}}</div>
+            </div>
+          </div>
+          </div>
+
+        </div>
+    </div>
+  </div>
+
+
 </div>

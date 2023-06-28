@@ -26,7 +26,7 @@ import { GestioneAutoriComponent } from './components/gestione-autori/gestione-a
 import { ArticleviewComponent } from './components/articleview/articleview/articleview.component';
 import { ReviewComponent } from './components/review/review/review.component';
 import { ViewreviewComponent } from './components/viewreview/viewreview/viewreview.component';
-
+import { CommonModule } from '@angular/common';
 const routes: Routes = [
   {
     path: 'home',
@@ -87,6 +87,7 @@ const routes: Routes = [
     AuthorComponent,
     GestioneAutoriComponent,
     ReviewComponent,
+    ArticleviewComponent,
     ViewreviewComponent
   ],
   imports: [
@@ -94,6 +95,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     AppRoutingModule,
     FormsModule,
+    CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatToolbarModule,

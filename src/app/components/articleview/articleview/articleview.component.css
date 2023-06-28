@@ -5,4 +5,27 @@
   margin-bottom: 40px;
 }
 
+.comment {
+  display: flex;
+  background-color: white;
+  border:1px solid rgb(193, 189, 189);
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+ .username {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color:white;
+  background-color: rgb(100, 149, 176);
+  padding: 2px;
+ }
 
+ .box-comment {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 40px;
+ }

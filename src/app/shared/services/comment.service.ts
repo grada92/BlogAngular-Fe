@@ -14,23 +14,23 @@ export class CommentService {
     }
 
     createAnotherComment(parentCommentId: number, commentInputDto: CommentInputDto): Observable<CommentOutputDto> {
-      return this.httpClient.post<CommentOutputDto>(environment.endpoint + "/comment/" + {parentCommentId} + "/comments", commentInputDto);
+      return this.httpClient.post<CommentOutputDto>(environment.endpoint + "blog/comment/" + parentCommentId + "/comments", commentInputDto);
     }
 
     getCommentsByArticleId(articleId: number): Observable<CommentOutputDto[]> {
-      return this.httpClient.get<CommentOutputDto[]>(environment.endpoint + "blog/comment" + {articleId});
+      return this.httpClient.get<CommentOutputDto[]>(environment.endpoint + "blog/comment/" + articleId);
     }
 
     getAnotherCommentsByParentId(parentId: number): Observable<CommentOutputDto[]> {
-      return this.httpClient.get<CommentOutputDto[]>(environment.endpoint + "blog/comment" + {parentId});
+      return this.httpClient.get<CommentOutputDto[]>(environment.endpoint + "blog/comment" + parentId);
     }
 
     deleteComment(commentId: number): Observable<void> {
-      return this.httpClient.delete<void>(environment.endpoint + "blog/comment" + {commentId});
+      return this.httpClient.delete<void>(environment.endpoint + "blog/comment" + commentId);
     }
 
     deleteAnotherComment(anotherCommentId: number): Observable<void> {
-      return this.httpClient.delete<void>(environment.endpoint + "blog/comment" + {anotherCommentId});
+      return this.httpClient.delete<void>(environment.endpoint + "blog/comment" + anotherCommentId);
     }
 
 
