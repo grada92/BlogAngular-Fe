@@ -6,6 +6,7 @@ import { CommentOutputDto } from 'src/app/models/comment/comment-output-dto.mode
 import { UserOutputDto } from 'src/app/models/user/user-output-dto.model';
 import { ArticleService } from 'src/app/shared/services/article.service';
 import { CommentService } from 'src/app/shared/services/comment.service';
+import { VoteService } from 'src/app/shared/services/vote.service';
 
 @Component({
   selector: 'app-articleview',
@@ -16,12 +17,13 @@ export class ArticleviewComponent implements OnInit {
   article?: ArticleOutputDto;
   articleId: number = -1;
   commentContent: string = '';
-  replyContent: string = '';
   comments: CommentOutputDto[] = [];
   users: UserOutputDto[] = []
-  replyContents: string[] = [];
+  voteCount: number = 0;
 
-  constructor(private articleService: ArticleService,private commentService:CommentService, private route: ActivatedRoute, private router: Router){}
+
+
+  constructor(private articleService: ArticleService,private commentService:CommentService, private route: ActivatedRoute, private router: Router,private voteService:VoteService){}
 
   findbyId(id : number){
     this.articleService.findById(id).subscribe(value => this.article = value);
@@ -39,6 +41,7 @@ export class ArticleviewComponent implements OnInit {
       this.articleId = Number(params["id"]);
       this.findbyId(this.articleId);
       this.getComments(this.articleId);
+      this.voteCount = this.article?.voteCount || 0;
     });
   }
 
@@ -64,26 +67,24 @@ export class ArticleviewComponent implements OnInit {
     );
   }
 
-  createAnotherComment(parentCommentId: number) {
-    const replyContent = this.replyContents[parentCommentId];
-    const commentInputDto: CommentInputDto = {
-      content: replyContent,
-      userId: 1,
-      articleId: this.articleId,
-      parentCommentId: parentCommentId
-    };
+  voteArticle(liked: boolean) {
+    if (this.article) {
+      const voteInputDto = {
+        liked: liked,
+        userId: 1,
+        articleId: this.article.id,
+      };
 
-    this.commentService.create(commentInputDto).subscribe(
-      (createdComment: CommentOutputDto) => {
-        console.log('Risposta creata:', createdComment);
-        this.replyContent = '';
-        this.getComments(this.articleId);
-
-      },
-      (error) => {
-        console.error('Errore creazione Risposta', error);
-      }
-    );
+      this.voteService.voteArticle(voteInputDto).subscribe(
+        (voteOutputDto) => {
+          console.log('Voto registrato:', voteOutputDto);
+          this.voteCount = voteOutputDto.voteCount;
+        },
+        (error) => {
+          console.error('Errore durante il voto', error);
+        }
+      );
+    }
   }
 
 }

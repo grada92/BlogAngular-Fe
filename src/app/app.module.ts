@@ -27,6 +27,7 @@ import { ArticleviewComponent } from './components/articleview/articleview/artic
 import { ReviewComponent } from './components/review/review/review.component';
 import { ViewreviewComponent } from './components/viewreview/viewreview/viewreview.component';
 import { CommonModule } from '@angular/common';
+import { GestioneUtentiComponent } from './components/gestione-utenti/gestione-utenti/gestione-utenti.component';
 const routes: Routes = [
   {
     path: 'home',
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'gestione-autori',
     component: GestioneAutoriComponent,
+  },
+  {
+    path: 'gestione-utenti',
+    component: GestioneUtentiComponent,
   },
   {
     path: 'revisione',
@@ -88,7 +93,8 @@ const routes: Routes = [
     GestioneAutoriComponent,
     ReviewComponent,
     ArticleviewComponent,
-    ViewreviewComponent
+    ViewreviewComponent,
+    GestioneUtentiComponent
   ],
   imports: [
     BrowserModule,
