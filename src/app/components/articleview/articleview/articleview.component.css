@@ -30,3 +30,13 @@
   margin-bottom: 40px;
  }
 
+ .vote {
+  color: blue;
+ }
+
+ .liked {
+  background-color: rgb(105, 0, 128);
+  padding:30px;
+  /* Aggiungi altri stili desiderati per il bottone "Mi Piace" quando è selezionato */
+}
+

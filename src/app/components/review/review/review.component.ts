@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ArticleOutputDto } from 'src/app/models/article/article-output-dto.model';
 import { ValidationInputDto } from 'src/app/models/validation/validation-input-dto.model';
+import { ValidationOutputDto } from 'src/app/models/validation/validation-output.dto.model';
 import { ArticleService } from 'src/app/shared/services/article.service';
 import { ValidationService } from 'src/app/shared/services/validation.service';
 
@@ -15,6 +16,7 @@ export class ReviewComponent {
   createValidation: FormGroup;
   previewLength: number = 150;
   articles: ArticleOutputDto[] = [];
+  validations?: ValidationOutputDto;
   successMessage: string = '';
   errorMessage: string = '';
 
@@ -27,6 +29,7 @@ export class ReviewComponent {
 
   ngOnInit() {
     this.readAllArticles();
+    this.getValidations();
   }
 
   readAllArticles() {
@@ -39,6 +42,17 @@ export class ReviewComponent {
       }
     });
   }
+  getValidations() {
+    this.validationService.getValidationAdmin().subscribe(
+      (result: ValidationOutputDto) => {
+        this.validations = result;
+      },
+      (error: any) => {
+        console.log('Errore recupero validazioni', error);
+      }
+    );
+  }
+
 
   viewFullArticle(articleId: number) {
     this.router.navigateByUrl('/revisione/' + articleId);
@@ -56,9 +70,12 @@ export class ReviewComponent {
         this.createValidation.reset();
         this.successMessage = 'Validazione creata con successo!';
         this.errorMessage = '';
+
         setTimeout(() => {
           this.successMessage = '';
         }, 5000);
+        this.getValidations();
+
       },
       error: err => {
         console.log(err);

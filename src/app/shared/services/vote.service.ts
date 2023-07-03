@@ -14,6 +14,7 @@ export class VoteService {
     }
 
 
-
-
+    getVotes(articleId: number) : Observable<VoteOutputDto[]>{
+      return this.httpClient.get<VoteOutputDto[]>(environment.endpoint + "blog/vote/"  + articleId);
+    }
 }

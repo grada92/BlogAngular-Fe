@@ -4,6 +4,8 @@ import { ArticleOutputDto } from 'src/app/models/article/article-output-dto.mode
 import { CommentInputDto } from 'src/app/models/comment/comment-input-dto.model';
 import { CommentOutputDto } from 'src/app/models/comment/comment-output-dto.model';
 import { UserOutputDto } from 'src/app/models/user/user-output-dto.model';
+import { VoteInputDto } from 'src/app/models/vote/vote-input-dto.model';
+import { VoteOutputDto } from 'src/app/models/vote/vote-output-dto.model';
 import { ArticleService } from 'src/app/shared/services/article.service';
 import { CommentService } from 'src/app/shared/services/comment.service';
 import { VoteService } from 'src/app/shared/services/vote.service';
@@ -18,8 +20,8 @@ export class ArticleviewComponent implements OnInit {
   articleId: number = -1;
   commentContent: string = '';
   comments: CommentOutputDto[] = [];
-  users: UserOutputDto[] = []
-  voteCount: number = 0;
+  users: UserOutputDto[] = [];
+
 
 
 
@@ -41,7 +43,6 @@ export class ArticleviewComponent implements OnInit {
       this.articleId = Number(params["id"]);
       this.findbyId(this.articleId);
       this.getComments(this.articleId);
-      this.voteCount = this.article?.voteCount || 0;
     });
   }
 
@@ -69,16 +70,19 @@ export class ArticleviewComponent implements OnInit {
 
   voteArticle(liked: boolean) {
     if (this.article) {
-      const voteInputDto = {
+      const voteInputDto: VoteInputDto = {
         liked: liked,
-        userId: 1,
+        disliked: !liked,
+        userId: 2,
         articleId: this.article.id,
       };
 
       this.voteService.voteArticle(voteInputDto).subscribe(
-        (voteOutputDto) => {
-          console.log('Voto registrato:', voteOutputDto);
-          this.voteCount = voteOutputDto.voteCount;
+        (vote: VoteOutputDto) => {
+          console.log('Voto registrato', vote);
+          this.router.navigateByUrl("/articolo/" + this.articleId).then(() => {
+            window.location.reload();
+          })
         },
         (error) => {
           console.error('Errore durante il voto', error);

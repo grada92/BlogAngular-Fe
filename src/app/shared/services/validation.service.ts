@@ -17,6 +17,9 @@ export class ValidationService {
       return this.httpClient.put<ValidationOutputDto>(environment.endpoint + "blog/validation/update", validationInputDto);
     }
 
+    getValidationAdmin(): Observable<ValidationOutputDto> {
+      return this.httpClient.get<ValidationOutputDto>(environment.endpoint + "blog/validation");
+    }
 
 
 

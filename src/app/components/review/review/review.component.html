@@ -15,7 +15,8 @@
       </div>
     </div>
     <div class="col-lg-4">
-      <div class="sidebar">
+      <a class="btn btn-danger" routerLink="/">Torna alla Home</a>
+      <div class="sidebar pt-5">
         <h4>Validazione Articoli</h4>
         <mat-card *ngIf="errorMessage" class="error-message">
           <p>{{ errorMessage }}</p>
@@ -23,19 +24,24 @@
         <mat-card *ngIf="successMessage" class="success-message">
           <p>{{ successMessage }}</p>
         </mat-card>
-        <div>
+        <div *ngIf="validations">
           <form [formGroup]="createValidation">
             <mat-card>
-              <mat-form-field appearance="outline">
+              <div>Validazione Corrente Titolo: {{ validations.maxTitleLength }} caratteri</div>
+              <div>Validazione Corrente Contenuto: {{ validations.maxContentLength }} caratteri</div>
+              <mat-form-field appearance="outline"  class="pt-4">
                 <mat-label>Titolo Lunghezza Max</mat-label>
-                <input matInput type="number" placeholder="Inserisci validazione per il titolo" formControlName="title" min="0">
+                <input matInput type="number" placeholder="{{ validations.maxContentLength }}" formControlName="title" min="0">
               </mat-form-field>
             </mat-card>
+
             <mat-card>
               <mat-form-field appearance="outline">
                 <mat-label>Contenuto Lunghezza Max</mat-label>
-                <input matInput type="number" placeholder="Inserisci validazione per il contenuto" formControlName="content" min="0">
+                <input matInput type="number" placeholder="{{ validations.maxContentLength }}" formControlName="content" min="0">
+
               </mat-form-field>
+
               <button mat-raised-button color="primary" (click)="save()">Crea Validazioni</button>
             </mat-card>
           </form>
