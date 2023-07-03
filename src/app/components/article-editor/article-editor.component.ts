@@ -24,7 +24,7 @@ export class ArticleEditorComponent implements OnInit{
   categoryFormArray?: FormArray;
   tags: TagOutputDto[] = [];
   categories: CategoryOutputDto[] = [];
-  userId:number = 1;
+  userId:number = -1;
   newTag: string = '';
   exist:boolean = false;
   successMessage: string = '';
@@ -136,7 +136,7 @@ export class ArticleEditorComponent implements OnInit{
         content: this.articleForm.value.content,
         categories: selectedCategories,
         tags: selectedTags,
-        userId: this.userId
+        userId: (Number)(localStorage.getItem("USER_ID"))
       };
       console.log("Selezionati TAG: " + selectedTags);
       console.log("Selezionate CATEGORIE : " + selectedCategories);

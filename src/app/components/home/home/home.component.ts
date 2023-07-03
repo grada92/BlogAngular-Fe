@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   selectedTag: string = '';
   searchArticleText: string = '';
   tags: TagOutputDto[] = [];
+  mostLikedArticles: ArticleOutputDto[] = [];
 
   constructor(private articleService:ArticleService,private tagService: TagService, private router:Router) {}
 
@@ -74,6 +75,18 @@ export class HomeComponent implements OnInit {
       );
     }
   }
+
+  getTopLikedArticles() {
+    this.articleService.getMostLikedArticles().subscribe({
+      next: (result: ArticleOutputDto[]) => {
+        this.filteredArticles = result;
+      },
+      error: (error: any) => {
+        console.error('Errore Ottenimento Articoli Più Apprezzati', error);
+      }
+    });
+  }
+
 
   filterArticlesByTag(tag: string) {
     console.log('Tag selezionato:', tag);

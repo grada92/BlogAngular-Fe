@@ -24,7 +24,6 @@ export class ArticleviewComponent implements OnInit {
 
 
 
-
   constructor(private articleService: ArticleService,private commentService:CommentService, private route: ActivatedRoute, private router: Router,private voteService:VoteService){}
 
   findbyId(id : number){
@@ -73,7 +72,7 @@ export class ArticleviewComponent implements OnInit {
       const voteInputDto: VoteInputDto = {
         liked: liked,
         disliked: !liked,
-        userId: 2,
+        userId: (Number)(localStorage.getItem("USER_ID")),
         articleId: this.article.id,
       };
 

@@ -13,7 +13,7 @@
   margin: 10px;
   padding: 10px;
 }
- .box-username {
+.box-username {
   font-family: "Times New Roman", Times, serif;
   font-size: 20px;
   font-weight: bold;
@@ -21,22 +21,17 @@
   border: 1px solid black;
   border-radius: 20px;
   padding: 3px;
- }
+}
 
- .box-comment {
+.box-comment {
   font-family: "Times New Roman", Times, serif;
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 40px;
- }
-
- .vote {
-  color: blue;
- }
-
- .liked {
-  background-color: rgb(105, 0, 128);
-  padding:30px;
-  /* Aggiungi altri stili desiderati per il bottone "Mi Piace" quando è selezionato */
 }
 
+.btn-active {
+  border-color: black;
+  padding: 50px;
+
+}

@@ -54,4 +54,13 @@ export class ArticleService {
     });
   }
 
+  getMostLikedArticles(): Observable<ArticleOutputDto[]> {
+    return this.httpClient.get<ArticleOutputDto[]>(environment.endpoint + 'blog/article/top', {
+      headers: {
+        skip: 'true'
+      }
+    });
+  }
+
+
 }
