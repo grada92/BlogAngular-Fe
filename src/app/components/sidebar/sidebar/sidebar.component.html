@@ -1,15 +1,20 @@
 <div class="main-container">
-  <mat-toolbar color="primary" class="d-flex justify-content-between align-items-center bar-black">
+  <mat-toolbar color="primary" class="d-flex justify-content-between align-items-center bar-white">
     <div style="width: calc(100% / 3 - 2rem)">
-      <h1>Wordpress</h1>
+      <img src="https://www.regione.lazio.it/themes/custom/assets/images/logo.png" alt="Logo" class="logo-image">
+      <a class="homepage px-1" routerLink="/"><mat-icon>home</mat-icon></a>
     </div>
     <div style="width: calc(100% / 3 - 2rem);text-align: right;" >
+
       <div *ngIf="showLogout()">
-        <button mat-stroked-button routerLink="/login">Accedi</button>
+        <button class="mx-1" mat-stroked-button routerLink="/login">Accedi</button>
         <button  mat-stroked-button routerLink="/registrazione-utente">Registrazione</button>
       </div>
       <div *ngIf="!showLogout()">
-        <button class="ms-btn-tertiary m-2" mat-raised-button (click)="logout()">Logout</button>
+        <button class="mx-1" mat-stroked-button routerLink="/revisione" *ngIf="!showReview()">Revisiona</button>
+        <button class="mx-1" mat-stroked-button routerLink="/gestione-autori" *ngIf="!showReview()">Autori</button>
+        <button mat-stroked-button routerLink="/gestione-utenti" *ngIf="!showReview()">Gestione Utenti</button>
+        <button class="ms-btn-tertiary mx-1" mat-raised-button (click)="logout()">Logout</button>
       </div>
     </div>
 

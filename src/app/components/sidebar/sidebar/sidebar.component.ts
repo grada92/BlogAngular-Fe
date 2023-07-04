@@ -61,4 +61,11 @@ export class SidebarComponent implements OnChanges, OnInit {
     }
     return false;
   }
+
+  showReview() {
+    if(this.admin === '' && this.staff === '') {
+     return true;
+    }
+    return false;
+  }
 }

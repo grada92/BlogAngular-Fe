@@ -1,0 +1,39 @@
+<div class="d-flex w-100 h-100 justify-content-center align-items-center" >
+  <div class="w-25 pb-5">
+    <form [formGroup]="formActivate" class="container-sm pb-5 login-form">
+      <mat-card class="p-4 box-form">
+        <div class="row row-cols-1 my-2">
+          <mat-error class="pb-3" *ngIf="!passwordsMatch">Le password non corrispondono</mat-error>
+          <div class="col">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required>
+              <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="formActivate.controls['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row row-cols-1 my-2">
+          <div class="col">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Conferma Password</mat-label>
+              <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="repPassword" required>
+              <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="formActivate.controls['repPassword'].invalid">{{getRepPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row row-cols-2 my-2">
+          <div class="col">
+            <button mat-stroked-button [class.opacity-50]="formActivate.invalid" [disabled]="formActivate.invalid" (click)="passwordReset()" >Reset</button>
+          </div>
+        </div>
+      </mat-card>
+    </form>
+  </div>
+</div>
+

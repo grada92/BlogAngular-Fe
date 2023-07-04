@@ -8,6 +8,7 @@ import { AuthenticationDto } from 'src/app/models/user/authentication-dto-model'
 import { LoginUserDto } from 'src/app/models/user/login-user-dto.model';
 import { RoleOutputDto } from 'src/app/models/user/role-output-dto-model';
 import { AuthorRegistrationDto } from 'src/app/models/user/author-registration-dto.model';
+import { NewPasswordDto } from 'src/app/models/user/new-password-dto.model';
 
 
 @Injectable({
@@ -28,6 +29,22 @@ export class UserService {
   login(loginUserDto : LoginUserDto) : Observable<AuthenticationDto> {
     return this.httpClient.post<AuthenticationDto>(environment.endpoint + "blog/user/login", loginUserDto, {
       headers: {
+        skip: "true"
+      }
+    });
+  }
+
+  resetPassword(newPassword: NewPasswordDto, id : number): Observable<number> {
+    return this.httpClient.put<number>(environment.endpoint + "blog/user/resetPassword/" + id, newPassword, {
+      headers : {
+        skip: "true"
+      }
+    });
+  }
+
+  activateStaff(id : number): Observable<void> {
+    return this.httpClient.get<void>(environment.endpoint + "blog/user/activate/" + id , {
+      headers : {
         skip: "true"
       }
     });

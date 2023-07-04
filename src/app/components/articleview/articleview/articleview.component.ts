@@ -8,6 +8,7 @@ import { VoteInputDto } from 'src/app/models/vote/vote-input-dto.model';
 import { VoteOutputDto } from 'src/app/models/vote/vote-output-dto.model';
 import { ArticleService } from 'src/app/shared/services/article.service';
 import { CommentService } from 'src/app/shared/services/comment.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { VoteService } from 'src/app/shared/services/vote.service';
 
 @Component({
@@ -24,10 +25,33 @@ export class ArticleviewComponent implements OnInit {
 
 
 
-  constructor(private articleService: ArticleService,private commentService:CommentService, private route: ActivatedRoute, private router: Router,private voteService:VoteService){}
+  constructor(private articleService: ArticleService,private userService: UserService,private commentService:CommentService, private route: ActivatedRoute, private router: Router,private voteService:VoteService){}
+
+  user : string = '';
+  staff : string = '';
+  admin : string = '';
 
   findbyId(id : number){
     this.articleService.findById(id).subscribe(value => this.article = value);
+  }
+
+  private findRoles(){
+    if(localStorage.getItem("USER_ID")) {
+      this.userService.findRolesByUserId((Number)(localStorage.getItem('USER_ID'))).subscribe({
+        next : list => list.forEach(role => {
+          if(role.authority === 'ROLE_ADMIN'){
+            this.admin = role.authority;
+          }
+          if(role.authority === 'ROLE_STAFF'){
+            this.staff = role.authority;
+          }
+          if(role.authority === 'ROLE_USER'){
+            this.user = role.authority;
+          }
+        })
+      });
+    }
+
   }
 
   getComments(articleId: number) {
@@ -42,6 +66,7 @@ export class ArticleviewComponent implements OnInit {
       this.articleId = Number(params["id"]);
       this.findbyId(this.articleId);
       this.getComments(this.articleId);
+      this.findRoles();
     });
   }
 
@@ -67,6 +92,19 @@ export class ArticleviewComponent implements OnInit {
     );
   }
 
+  deleteComment(commentId: number) {
+    this.commentService.deleteComment(commentId).subscribe(
+      () => {
+        console.log('Commento eliminato con successo');
+        this.getComments(this.articleId);
+      },
+      (error) => {
+        console.error("Errore eliminazione commento", error);
+      }
+    );
+  }
+
+
   voteArticle(liked: boolean) {
     if (this.article) {
       const voteInputDto: VoteInputDto = {
@@ -88,6 +126,13 @@ export class ArticleviewComponent implements OnInit {
         }
       );
     }
+  }
+
+  showDelete() {
+    if(this.admin === '' && this.staff === '') {
+     return true;
+    }
+    return false;
   }
 
 }

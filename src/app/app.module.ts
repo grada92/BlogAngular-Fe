@@ -28,6 +28,7 @@ import { ReviewComponent } from './components/review/review/review.component';
 import { ViewreviewComponent } from './components/viewreview/viewreview/viewreview.component';
 import { CommonModule } from '@angular/common';
 import { GestioneUtentiComponent } from './components/gestione-utenti/gestione-utenti/gestione-utenti.component';
+import { ActivateComponent } from './components/activate/activate/activate.component';
 const routes: Routes = [
   {
     path: 'home',
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'gestione-autori',
     component: GestioneAutoriComponent,
+  },
+  {
+    path: 'activate-author/:id',
+    component: ActivateComponent,
   },
   {
     path: 'gestione-utenti',
@@ -94,7 +99,8 @@ const routes: Routes = [
     ReviewComponent,
     ArticleviewComponent,
     ViewreviewComponent,
-    GestioneUtentiComponent
+    GestioneUtentiComponent,
+    ActivateComponent
   ],
   imports: [
     BrowserModule,

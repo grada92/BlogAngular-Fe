@@ -7,10 +7,11 @@
 
 .comment {
   display: flex;
+  flex-direction: column;
   background-color: white;
-  border:1px solid rgb(193, 189, 189);
+  border: 1px solid rgb(193, 189, 189);
   border-radius: 10px;
-  margin: 10px;
+  margin: 30px;
   padding: 10px;
 }
 .box-username {
@@ -18,9 +19,8 @@
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 40px;
-  border: 1px solid black;
-  border-radius: 20px;
   padding: 3px;
+  color: rgb(68, 114, 241);
 }
 
 .box-comment {
@@ -28,10 +28,23 @@
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 40px;
+  padding: 3px;
 }
 
-.btn-active {
-  border-color: black;
-  padding: 50px;
-
+.like-button {
+  color:rgb(68, 114, 241);
 }
+
+.dislike-button {
+  color:rgb(230, 58, 67);
+}
+
+.card-comment {
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+.comment-container {
+  word-wrap: break-word;
+}
+

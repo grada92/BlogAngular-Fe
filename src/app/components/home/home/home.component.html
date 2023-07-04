@@ -3,9 +3,9 @@
     <div class="col-md-3">
       <div class="sidebar-left">
         <h5 class="text-center">NAVIGAZIONE</h5>
-        <div class="search-container py-5">
+        <div class="search-container py-1 pb-5">
           <input type="text" class="form-control" placeholder="Cerca articoli" [(ngModel)]="searchArticleText">
-          <button class="btn btn-primary" (click)="searchArticles()">Cerca</button>
+          <button mat-raised-button class="w-25 mt-1" (click)="searchArticles()">Cerca</button>
         </div>
         <ul class="sidebar-menu">
           <li>
@@ -35,15 +35,14 @@
     </div>
     <div class="col-md-6 pt-5">
       <div class="card-deck">
-        <div class="card mb-4" *ngFor="let article of filteredArticles">
+        <div class="card mb-4 card-custom" *ngFor="let article of filteredArticles">
           <div class="card-body">
-            <h5 class="card-title">{{ article.title }}</h5>
-            <p class="card-text" [innerHTML]="article.content | slice:0:previewLength"></p>
+            <h4 class="card-title" [innerHTML]="article.title"></h4>
             <div class="tag-container">
-              <p class="card-tag" *ngFor="let category of article.categories">{{ category.name }}</p>
+              <p class="card-tag mx-1" *ngFor="let category of article.categories">{{ category.name }}</p>
             </div>
-            <button class="btn btn-primary" (click)="viewFullArticle(article.id)">Leggi di più</button>
           </div>
+          <button class="card-button" (click)="viewFullArticle(article.id)">Leggi di più</button>
         </div>
       </div>
     </div>

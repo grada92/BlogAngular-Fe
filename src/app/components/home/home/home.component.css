@@ -23,7 +23,8 @@
 }
 
 .sidebar-left {
-  background-color: #f13131;
+  background-color:#0077b5;
+  border-right: 1px solid black;
   width: 200px;
   height: 100vh;
   padding: 20px;
@@ -55,7 +56,8 @@
 }
 
 .sidebar-right {
-  background-color: #f13131;
+  background-color: #0077b5;
+  border-left: 1px solid black;
   width: 200px;
   height: 100vh;
   padding: 20px;
@@ -71,4 +73,15 @@
 
 .tag-link:hover {
   cursor: pointer;
+}
+.card {
+  height: 150px;
+}
+
+.card-button {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color:white;
+  background-color: #0077b5;
 }
