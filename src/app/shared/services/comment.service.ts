@@ -26,12 +26,22 @@ export class CommentService {
     }
 
     deleteComment(commentId: number): Observable<void> {
-      return this.httpClient.delete<void>(environment.endpoint + "blog/comment" + commentId);
+      return this.httpClient.delete<void>(environment.endpoint + "blog/comment/" + commentId);
     }
 
     deleteAnotherComment(anotherCommentId: number): Observable<void> {
       return this.httpClient.delete<void>(environment.endpoint + "blog/comment" + anotherCommentId);
     }
+
+    deleteCommentUser(commentId: number, userId: number): Observable<void> {
+      return this.httpClient.delete<void>(environment.endpoint + "blog/comment/" + commentId + "/user-comments", {
+        params: {
+          userId: userId.toString()
+        }
+      });
+    }
+
+
 
 
 

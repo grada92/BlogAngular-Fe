@@ -22,6 +22,7 @@ export class ArticleviewComponent implements OnInit {
   commentContent: string = '';
   comments: CommentOutputDto[] = [];
   users: UserOutputDto[] = [];
+  deleteError: string = '';
 
 
 
@@ -76,7 +77,7 @@ export class ArticleviewComponent implements OnInit {
   }
     const commentInputDto: CommentInputDto = {
       content: this.commentContent,
-      userId: 1,
+      userId: (Number)(localStorage.getItem("USER_ID")),
       articleId: this.articleId,
     };
 
@@ -100,9 +101,26 @@ export class ArticleviewComponent implements OnInit {
       },
       (error) => {
         console.error("Errore eliminazione commento", error);
+        this.deleteError = "Errore durante l'eliminazione del commento.";
       }
     );
   }
+
+  deleteCommentUser(commentId: number) {
+    const userId = (Number)(localStorage.getItem('USER_ID'));
+    this.commentService.deleteCommentUser(commentId, userId).subscribe(
+      () => {
+        console.log('Commento eliminato con successo');
+        this.getComments(this.articleId);
+      },
+      (error) => {
+        console.error("Errore eliminazione commento", error);
+        this.deleteError = "Errore durante l'eliminazione del commento.";
+      }
+    );
+  }
+
+
 
 
   voteArticle(liked: boolean) {
@@ -131,6 +149,13 @@ export class ArticleviewComponent implements OnInit {
   showDelete() {
     if(this.admin === '' && this.staff === '') {
      return true;
+    }
+    return false;
+  }
+
+  showDeleteUser() {
+    if (this.user === 'ROLE_USER' && this.admin === '' && this.staff === '') {
+      return true;
     }
     return false;
   }

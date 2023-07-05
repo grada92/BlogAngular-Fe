@@ -30,12 +30,19 @@
   </div>
 
   <div class="col-12">
+    <div *ngIf="deleteError" class="error-message pt-4">
+      {{ deleteError }}
+    </div>
     <div *ngFor="let comment of comments" class="comment">
       <div class="mx-4 box-username">{{comment.user.firstName}}</div>
       <div class="pb-4 mx-4 comment-container">{{comment.content}}</div>
-      <button *ngIf="!showDelete()" class="card-comment" mat-icon-button color="primary" (click)="deleteComment(comment.id)">
+      <button  *ngIf="showDeleteUser()" class="card-comment" mat-icon-button color="primary" (click)="deleteCommentUser(comment.id)">
         <mat-icon>delete</mat-icon>
       </button>
+      <button *ngIf="!showDelete()" class="card-comment" mat-icon-button color="primary" (click)="deleteComment(comment.id)">
+        <mat-icon>cancella</mat-icon>
+      </button>
+
     </div>
   </div>
 
