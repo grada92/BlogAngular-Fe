@@ -31,4 +31,11 @@ export class ViewreviewComponent {
       this.router.navigate(['/revisione']);
     });
   }
+
+  deleteArticle(articleId: number) {
+    this.articleService.delete(articleId).subscribe(article => {
+      console.log("articolo eliminato", article);
+      this.router.navigate(['/revisione']);
+    })
+  }
 }

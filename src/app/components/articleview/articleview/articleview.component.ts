@@ -24,8 +24,6 @@ export class ArticleviewComponent implements OnInit {
   users: UserOutputDto[] = [];
   deleteError: string = '';
 
-
-
   constructor(private articleService: ArticleService,private userService: UserService,private commentService:CommentService, private route: ActivatedRoute, private router: Router,private voteService:VoteService){}
 
   user : string = '';

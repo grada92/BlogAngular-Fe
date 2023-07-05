@@ -62,5 +62,9 @@ export class ArticleService {
     });
   }
 
+  delete(articleId: number) : Observable<void> {
+    return this.httpClient.delete<void>(environment.endpoint + "blog/article/" + articleId );
+  }
+
 
 }

@@ -6,6 +6,7 @@
           <span class="font-title article-content" [innerHTML]="article?.title"></span>
           <div class="d-flex">
             <button class="btn btn-primary mx-2" (click)="approveArticle(article!.id)">Approva</button>
+            <button class="btn btn-primary mx-2" (click)="deleteArticle(article!.id)">Elimina Articolo</button>
             <a class="btn btn-danger mr-2" routerLink="/revisione">Revisiona altri Articoli</a>
           </div>
         </div>

@@ -11,9 +11,10 @@
         <button  mat-stroked-button routerLink="/registrazione-utente">Registrazione</button>
       </div>
       <div *ngIf="!showLogout()">
-        <button class="mx-1" mat-stroked-button routerLink="/revisione" *ngIf="!showReview()">Revisiona</button>
-        <button class="mx-1" mat-stroked-button routerLink="/gestione-autori" *ngIf="!showReview()">Autori</button>
-        <button mat-stroked-button routerLink="/gestione-utenti" *ngIf="!showReview()">Gestione Utenti</button>
+        <button class="mx-1" mat-stroked-button routerLink="/articolo" *ngIf="admin === '' && !showReview()">Scrivi Articolo</button>
+        <button class="mx-1" mat-stroked-button routerLink="/revisione" *ngIf="admin === 'ROLE_ADMIN' && !showReview()">Revisiona</button>
+        <button class="mx-1" mat-stroked-button routerLink="/gestione-autori" *ngIf="admin === 'ROLE_ADMIN' && !showReview()">Autori</button>
+        <button mat-stroked-button routerLink="/gestione-utenti" *ngIf="admin === 'ROLE_ADMIN' && !showReview()">Gestione Utenti</button>
         <button class="ms-btn-tertiary mx-1" mat-raised-button (click)="logout()">Logout</button>
       </div>
     </div>

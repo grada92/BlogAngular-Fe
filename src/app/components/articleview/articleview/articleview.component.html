@@ -9,6 +9,11 @@
   <div class="row justify-content-center">
     <div class="col-12">
       <div class="box-text">
+        <div class="d-flex align-items-center">
+          <p>scritto da</p>
+        <h2 class="mx-2 author">{{article?.user?.firstName}} {{article?.user?.lastName}}</h2>
+        </div>
+
         <p class="font-title pb-5 article-content" [innerHTML]="article?.title"></p>
         <p class="article-content" [innerHTML]="article?.content"></p>
       </div>
