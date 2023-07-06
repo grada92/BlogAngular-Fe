@@ -6,7 +6,7 @@
 
 .card-tag {
   display: inline-block;
-  background-color: #f5b45f;
+  background-color: #ee8e68;
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 12px;
@@ -21,7 +21,7 @@
 .card-title {
   max-width: 60%;
   position: absolute;
-  top: 80px;
+  top: 60px;
   left: 205px;
   transform: translateY(-50%);
 }
@@ -34,9 +34,17 @@
 .card-text {
   max-width: 60%;
   position: absolute;
-  top: 120px;
+  top: 100px;
   left: 220px;
 }
+
+.home-container {
+  background-image: url('https://live.staticflickr.com/4240/35762089556_15df833532_h.jpg');
+  background-position: center;
+  background-size: contain;
+  background-attachment: fixed;
+}
+
 
 .sidebar-left {
   background-color:#0077b5;
@@ -100,14 +108,15 @@
 }
 
 .card {
-  height: 210px;
+  height: 180px;
   border-radius: 20px;
+  opacity: 0.95;
 }
 
 .card-button {
   position: absolute;
   bottom: 10px;
-  right: 430px;
+  right: 410px;
   color:white;
   background-color: #0077b5;
 }

@@ -1,9 +1,8 @@
-<div class="container-fluid">
+<div class="container-fluid home-container">
   <div class="row">
     <div class="col-md-3">
       <div class="sidebar-left">
-        <h5 class="text-center">NAVIGAZIONE</h5>
-        <div class="search-container py-1 pb-5">
+        <div class="search-container py-1 pb-5 px-3">
           <input type="text" class="form-control" placeholder="Cerca articoli" [(ngModel)]="searchArticleText">
           <button mat-raised-button class="w-25 mt-1" (click)="searchArticles()">Cerca</button>
         </div>
@@ -34,7 +33,7 @@
       </div>
     </div>
     <div class="col-md-6 pt-5">
-      <div class="card-deck">
+      <div class="card-deck px-2">
         <div class="card mb-4 card-custom d-flex" *ngFor="let article of filteredArticles">
           <div class="tag-container">
             <p class="card-tag mx-1" *ngFor="let category of article.categories">{{ category.name }}</p>
