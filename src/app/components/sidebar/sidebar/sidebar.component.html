@@ -2,7 +2,7 @@
   <mat-toolbar color="primary" class="d-flex justify-content-between align-items-center bar-white">
     <div style="width: calc(100% / 3 - 2rem)">
       <img src="https://www.regione.lazio.it/themes/custom/assets/images/logo.png" alt="Logo" class="logo-image">
-      <a class="homepage px-1" routerLink="/"><mat-icon>home</mat-icon></a>
+      <a *ngIf="!showLogout()" class="homepage px-1" routerLink="/"><mat-icon>home</mat-icon></a>
     </div>
     <div style="width: calc(100% / 3 - 2rem);text-align: right;" >
 

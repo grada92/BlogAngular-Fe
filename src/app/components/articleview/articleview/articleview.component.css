@@ -2,7 +2,7 @@
   font-family: "Times New Roman", Times, serif;
   font-size: 26px;
   font-weight: bold;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .comment {
@@ -55,4 +55,13 @@
 
 .author {
   color: rgb(53, 128, 194);
+}
+
+.box-text {
+  margin: 0 auto;
+}
+
+.article-content {
+  max-width: 100%;
+  overflow-wrap: break-word;
 }

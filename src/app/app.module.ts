@@ -29,10 +29,14 @@ import { ViewreviewComponent } from './components/viewreview/viewreview/viewrevi
 import { CommonModule } from '@angular/common';
 import { GestioneUtentiComponent } from './components/gestione-utenti/gestione-utenti/gestione-utenti.component';
 import { ActivateComponent } from './components/activate/activate/activate.component';
+import { authGuard } from './guard/auth.guard';
+import { authAdminGuard } from './guard/auth.admin.guard';
+import { authStaffOrAdminGuard } from './guard/auth-staff-or-admin.guard';
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'registrazione-utente',
@@ -41,6 +45,7 @@ const routes: Routes = [
   {
     path: 'articolo',
     component: ArticleEditorComponent,
+    canActivate: [authStaffOrAdminGuard]
   },
   {
     path: 'login',
@@ -49,30 +54,37 @@ const routes: Routes = [
   {
     path: 'registrazione-autore',
     component: AuthorComponent,
+    canActivate: [authAdminGuard]
   },
   {
     path: 'gestione-autori',
     component: GestioneAutoriComponent,
+    canActivate: [authAdminGuard],
   },
   {
     path: 'activate-author/:id',
     component: ActivateComponent,
+    canActivate: [authAdminGuard]
   },
   {
     path: 'gestione-utenti',
     component: GestioneUtentiComponent,
+    canActivate: [authAdminGuard]
   },
   {
     path: 'revisione',
     component: ReviewComponent,
+    canActivate: [authAdminGuard]
   },
   {
     path: 'articolo/:id',
     component: ArticleviewComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'revisione/:id',
     component: ViewreviewComponent,
+    canActivate: [authAdminGuard]
   },
   {
     path: '',

@@ -14,3 +14,11 @@
 .error-message {
   color: red;
 }
+
+.login-container {
+  min-height: calc(100vh - 64px);
+  background-image: url('https://images5.alphacoders.com/443/443566.jpg');
+  background-size: cover;
+  background-position: center calc(120px + 50%);
+  background-repeat: no-repeat;
+}

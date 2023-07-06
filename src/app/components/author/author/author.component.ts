@@ -34,7 +34,7 @@ export class AuthorComponent {
         this.successMessage = "Registrazione autore avvenuta con successo.";
         console.log("Registrazione avvenuta con successo:", this.successMessage);
         this.loading = false;
-        this.router.navigateByUrl("/login");
+        this.router.navigateByUrl("/gestione-autori");
       },
       error: (err: any) => {
         console.log("Errore durante la registrazione dello staff:", err);

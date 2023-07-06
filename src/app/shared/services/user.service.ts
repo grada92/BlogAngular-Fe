@@ -50,6 +50,23 @@ export class UserService {
     });
   }
 
+  blockUser(userId: number): Observable<void> {
+    return this.httpClient.post<void>(environment.endpoint + "blog/user/block/" + userId, {
+      headers: {
+        skip: "true"
+      }
+    });
+  }
+
+  activeUser(userId: number): Observable<void> {
+    return this.httpClient.post<void>(environment.endpoint + "blog/user/active/" + userId, {
+      headers: {
+        skip: "true"
+      }
+    });
+  }
+
+
   findRolesByUserId(id:number): Observable<RoleOutputDto[]> {
     return this.httpClient.get<RoleOutputDto[]>(environment.endpoint + "blog/user/roles/" + id);
   }

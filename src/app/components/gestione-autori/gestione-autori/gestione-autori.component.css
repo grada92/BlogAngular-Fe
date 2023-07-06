@@ -13,19 +13,6 @@
   transition: background-color 0.3s ease;
 }
 
-.button-delete mat-icon {
-  font-size: 20px;
-  margin-right: 8px;
-}
-
-.button-delete span {
-  margin-right: 8px;
-}
-
-.button-delete:hover {
-  background-color: #ff0000; /* Colore di sfondo personalizzato durante l'hover */
-}
-
 .custom-table .action-buttons {
   display: flex;
   align-items: center;

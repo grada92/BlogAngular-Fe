@@ -1,7 +1,6 @@
+
 .login-form {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.9);
-  width: 100%;
-  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -11,4 +10,12 @@
   text-align: center;
   margin-bottom: 20px;
   padding-bottom: 15px;
+}
+
+.reg-box {
+  min-height: calc(100vh - 64px);
+  background-image: url('https://images5.alphacoders.com/443/443566.jpg');
+  background-size: cover;
+  background-position: center calc(120px + 50%);
+  background-repeat: no-repeat;
 }

@@ -35,3 +35,16 @@
 table{
   background-color: gainsboro;
 }
+
+.text-active {
+  color:rgb(0, 180, 81);
+  font-size: 18px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.text-block {
+  color: red;
+  font-size: 18px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+

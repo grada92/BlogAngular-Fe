@@ -35,19 +35,33 @@
     </div>
     <div class="col-md-6 pt-5">
       <div class="card-deck">
-        <div class="card mb-4 card-custom" *ngFor="let article of filteredArticles">
+        <div class="card mb-4 card-custom d-flex" *ngFor="let article of filteredArticles">
+          <div class="tag-container">
+            <p class="card-tag mx-1" *ngFor="let category of article.categories">{{ category.name }}</p>
+          </div>
           <div class="card-body">
-            <h4 class="card-title" [innerHTML]="article.title"></h4>
-            <div class="tag-container">
-              <p class="card-tag mx-1" *ngFor="let category of article.categories">{{ category.name }}</p>
+            <div class="card-title-container">
+              <h4 class="card-title" [innerHTML]="article.title"></h4>
+            </div>
+            <div class="card-content-container">
+              <p class="card-text">{{ getArticlePreviewText(article.content) }}</p>
+            </div>
+            <div *ngIf="getArticleImage(article.content)">
+              <img [src]="getArticleImage(article.content)" class="article-preview-image" alt="Preview Image">
             </div>
           </div>
           <button class="card-button" (click)="viewFullArticle(article.id)">Leggi di più</button>
         </div>
       </div>
     </div>
+
+
+
     <div class="col-md-3">
       <div class="sidebar sidebar-right">
+        <div class="logo-container">
+          <img src="https://seeklogo.com/images/R/regione-lazio-logo-099C48189E-seeklogo.com.png" alt="Logo" class="logo-img">
+        </div>
         <h5 class="text-center">TAG</h5>
         <div class="tag-container py-5">
           <a class="tag-link" *ngFor="let tag of tags" (click)="filterArticlesByTag(tag.name)">

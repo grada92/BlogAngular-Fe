@@ -100,6 +100,22 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  getArticleImage(content: string): string | null {
+    const regex = /<img.*?src="(data:image\/(png|jpeg|jpg);base64,.*?)"/;
+    const match = content.match(regex);
+    return match ? match[1] : null;
+  }
+
+  getArticlePreviewText(content: string): string {
+    const maxLength = 100;
+    let previewText = content.replace(/<[^>]+>/g, '');
+    if (previewText.length > maxLength) {
+      previewText = previewText.substring(0, maxLength) + '...';
+    }
+    return previewText;
+  }
+
+
   viewFullArticle(articleId: number) {
     this.router.navigateByUrl('/articolo/' + articleId);
   }
