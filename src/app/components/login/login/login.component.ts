@@ -47,8 +47,11 @@ export class LoginComponent {
         this.router.navigateByUrl("/home");
       },
       error: (err: any) => {
-        console.log("Errore durante il login:", err);
-        this.loginError = 'Email o password errati. Riprova.';
+        if (err.status === 403 && err.error.message === "L'utente è bloccato") {
+          this.loginError = "Sei stato bloccato. Contatta l'amministratore.";
+        } else {
+          this.loginError = 'Email o password errati. Riprova.';
+        }
         this.showError = true;
       },
       complete: () => {

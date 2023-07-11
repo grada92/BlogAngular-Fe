@@ -33,11 +33,11 @@
     </div>
   </div>
 
-  <div class="col-12">
+  <div class="col-8">
     <div *ngIf="deleteError" class="error-message pt-4">
       {{ deleteError }}
     </div>
-    <div *ngFor="let comment of comments" class="comment">
+    <div *ngFor="let comment of comments" [ngClass]="{'comment-box': comment.parentCommentId === null, 'child-comment': comment.parentCommentId !== null}" >
       <div class="mx-4 box-username">{{comment.user.firstName}}</div>
       <div class="pb-4 mx-4 comment-container">{{comment.content}}</div>
       <button  *ngIf="showDeleteUser()" class="card-comment" mat-icon-button color="primary" (click)="deleteCommentUser(comment.id)">
@@ -46,6 +46,20 @@
       <button *ngIf="!showDelete()" class="card-comment" mat-icon-button color="primary" (click)="deleteComment(comment.id)">
         <mat-icon>cancella</mat-icon>
       </button>
+
+       <button *ngIf="showDeleteUser()" class="card-comment" mat-icon-button color="primary" (click)="showReplyForm(comment.id)">
+        <mat-icon>reply</mat-icon>
+      </button>
+
+      <div *ngIf="replyFormParentId === comment.id" class="reply-form">
+        <form (submit)="createReply(comment.id)">
+          <div class="form-group py-3">
+            <label for="replyContent">Rispondi</label>
+            <textarea class="form-control" id="replyContent" rows="1" required name="replyContent" [(ngModel)]="replyContent"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Invia risposta</button>
+        </form>
+      </div>
 
     </div>
   </div>

@@ -21,8 +21,11 @@ export class ArticleviewComponent implements OnInit {
   articleId: number = -1;
   commentContent: string = '';
   comments: CommentOutputDto[] = [];
+  childComments: CommentOutputDto[] = [];
   users: UserOutputDto[] = [];
   deleteError: string = '';
+  replyFormParentId: number = -1;
+  replyContent: string = '';
 
   constructor(private articleService: ArticleService,private userService: UserService,private commentService:CommentService, private route: ActivatedRoute, private router: Router,private voteService:VoteService){}
 
@@ -51,6 +54,10 @@ export class ArticleviewComponent implements OnInit {
       });
     }
 
+  }
+
+  showReplyForm(commentId: number) {
+    this.replyFormParentId = commentId;
   }
 
   getComments(articleId: number) {
@@ -90,6 +97,30 @@ export class ArticleviewComponent implements OnInit {
       }
     );
   }
+
+  createReply(parentCommentId: number) {
+    if (this.replyContent.trim().length === 0 || this.replyContent === '') {
+      return;
+    }
+
+    const replyInputDto: CommentInputDto = {
+      content: this.replyContent,
+      userId: (Number)(localStorage.getItem("USER_ID")),
+      articleId: this.articleId,
+    };
+
+    this.commentService.createAnotherComment(parentCommentId, replyInputDto).subscribe(
+      (createdReply: CommentOutputDto) => {
+        console.log('Risposta creata:', createdReply);
+        this.replyContent = '';
+        this.getComments(this.articleId);
+      },
+      (error) => {
+        console.error('Errore creazione risposta', error);
+      }
+    );
+  }
+
 
   deleteComment(commentId: number) {
     this.commentService.deleteComment(commentId).subscribe(
