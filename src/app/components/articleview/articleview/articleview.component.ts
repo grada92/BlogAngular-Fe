@@ -188,5 +188,4 @@ export class ArticleviewComponent implements OnInit {
     }
     return false;
   }
-
 }

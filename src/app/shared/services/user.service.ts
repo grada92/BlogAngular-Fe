@@ -66,6 +66,14 @@ export class UserService {
     });
   }
 
+  getUser(userId: number): Observable<UserOutputDto> {
+    return this.httpClient.get<UserOutputDto>(environment.endpoint + "blog/user/" + userId);
+  }
+
+  subscribeToNotifications(userId: number): Observable<string> {
+    return this.httpClient.post<string>(environment.endpoint + "blog/user/subscribe/" + userId, null);
+  }
+
 
   findRolesByUserId(id:number): Observable<RoleOutputDto[]> {
     return this.httpClient.get<RoleOutputDto[]>(environment.endpoint + "blog/user/roles/" + id);

@@ -5,5 +5,6 @@ export interface UserOutputDto {
   lastName: string,
   email: string,
   active: boolean,
+  subscription: boolean;
 
 }

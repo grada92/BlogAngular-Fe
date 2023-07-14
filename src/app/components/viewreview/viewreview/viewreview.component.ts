@@ -27,8 +27,8 @@ export class ViewreviewComponent {
 
   approveArticle(id: number) {
     this.articleService.articleApproved(id).subscribe(approvedArticle => {
-      console.log('Articolo approvato:', approvedArticle);
       this.router.navigate(['/revisione']);
+      console.log('Articolo approvato:', approvedArticle);
     });
   }
 

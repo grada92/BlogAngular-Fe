@@ -34,3 +34,6 @@
   border-radius: 4px;
 }
 
+.card-title {
+  max-width: 50%;
+}
