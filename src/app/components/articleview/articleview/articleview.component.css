@@ -47,8 +47,14 @@
 }
 
 .article-content {
-  max-width: 100%;
+  max-width: 1500px;
   overflow-wrap: break-word;
+  overflow-x: auto;
+}
+
+.article-content img {
+  height: auto;
+  max-width: 100%;
 }
 
 .child-comment {

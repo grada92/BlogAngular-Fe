@@ -28,7 +28,10 @@
           <textarea class="form-control" id="commentContent" rows="1" required name="commentContent" [(ngModel)]="commentContent"></textarea>
 
         </div>
-        <button type="submit" class="btn btn-primary">Invia commento</button>
+        <button type="submit" class="btn btn-primary" [disabled]="loadingComments">
+          <ng-container *ngIf="!loadingComments">Invia commento</ng-container>
+          <ng-container *ngIf="loadingComments">Caricamento in corso...</ng-container>
+        </button>
       </form>
     </div>
   </div>

@@ -26,6 +26,7 @@ export class ArticleviewComponent implements OnInit {
   deleteError: string = '';
   replyFormParentId: number = -1;
   replyContent: string = '';
+  loadingComments: boolean = false;
 
   constructor(private articleService: ArticleService,private userService: UserService,private commentService:CommentService, private route: ActivatedRoute, private router: Router,private voteService:VoteService){}
 
@@ -63,6 +64,7 @@ export class ArticleviewComponent implements OnInit {
   getComments(articleId: number) {
     this.commentService.getCommentsByArticleId(articleId).subscribe(comments => {
       this.comments = comments;
+      this.loadingComments = false;
       console.log('Commenti ricevuti:', comments);
     });
   }
@@ -71,6 +73,7 @@ export class ArticleviewComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.articleId = Number(params["id"]);
       this.findbyId(this.articleId);
+      this.loadingComments = true;
       this.getComments(this.articleId);
       this.findRoles();
     });
@@ -80,6 +83,9 @@ export class ArticleviewComponent implements OnInit {
     if (this.commentContent.trim().length === 0 || this.commentContent === '') {
     return;
   }
+
+  this.loadingComments = true;
+
     const commentInputDto: CommentInputDto = {
       content: this.commentContent,
       userId: (Number)(localStorage.getItem("USER_ID")),
@@ -88,9 +94,12 @@ export class ArticleviewComponent implements OnInit {
 
     this.commentService.create(commentInputDto).subscribe(
       (createdComment: CommentOutputDto) => {
+        this.comments.push(createdComment);
         console.log('Commento creato:', createdComment);
         this.commentContent = '';
         this.getComments(this.articleId);
+        this.loadingComments = false;
+
       },
       (error) => {
         console.error('Errore creazione Commento', error);
