@@ -66,6 +66,7 @@ export class HomeComponent implements OnInit {
         article.content.toLowerCase().includes(searchText)
       );
     }
+    this.searchArticleText = '';
   }
 
   filterArticlesByCategory(category: string) {
